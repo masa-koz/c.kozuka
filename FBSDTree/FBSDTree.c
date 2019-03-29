@@ -26,7 +26,7 @@ int __cdecl
 main(void)
 {
 	int i, mod;
-	struct MyData *data;
+	struct MyData *data, find;
 
 	mod = 0;
 Retry:
@@ -51,5 +51,9 @@ Retry:
 		printf("%d,", data->num);
 	}
 	printf("\n");
+
+	find.num = 128;
+	data = RB_FIND(MyDataEntries, &Head, &find);
+	printf("data(%p)->num(%d)\n", data, data ? data->num : -1);
 	return 0;
 }
